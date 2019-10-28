@@ -17,7 +17,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public void submitContactCreation() {
-        click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]"));
+        click(By.xpath("//input[21]"));
     }
 
     public void fillContactForm(ContactData contactData, boolean creation) {
@@ -52,5 +52,15 @@ public class ContactHelper extends HelperBase{
 
     public void submitContactModification() {
         click(By.xpath("//input[22]"));
+    }
+
+    public void createContact(ContactData contact, boolean b) {
+        fillContactForm(contact, true);
+        submitContactCreation();
+        returnToContactPage();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
     }
 }
