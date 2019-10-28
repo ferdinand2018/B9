@@ -14,6 +14,10 @@ public class ContactCreationTests {
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/");
+        login();
+    }
+
+    private void login() {
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys("admin");
@@ -25,7 +29,26 @@ public class ContactCreationTests {
 
     @Test
     public void testContactCreationTests() throws Exception {
-        wd.findElement(By.linkText("add new")).click();
+        gotoContactCreationPage(); //Переход на страницу создания контактов
+        fillContactForm(); //Заполнение данных о контакте
+        submitContactCreation(); //Отправка данных
+        returnToContactPage(); //Переход на страницу контактов
+        logout(); //Выход из системы
+    }
+
+    private void logout() {
+        wd.findElement(By.linkText("Logout")).click();
+    }
+
+    private void returnToContactPage() {
+        wd.findElement(By.linkText("home page")).click();
+    }
+
+    private void submitContactCreation() {
+        wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]")).click();
+    }
+
+    private void fillContactForm() {
         wd.findElement(By.name("firstname")).click();
         wd.findElement(By.name("firstname")).clear();
         wd.findElement(By.name("firstname")).sendKeys("firstname");
@@ -38,11 +61,10 @@ public class ContactCreationTests {
         wd.findElement(By.name("mobile")).sendKeys("123");
         wd.findElement(By.name("work")).clear();
         wd.findElement(By.name("work")).sendKeys("321");
-        wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]")).click();
-        wd.findElement(By.linkText("home page")).click();
-        wd.findElement(By.linkText("Logout")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys("admin");
+    }
+
+    private void gotoContactCreationPage() {
+        wd.findElement(By.linkText("add new")).click();
     }
 
     @AfterMethod(alwaysRun = true)
