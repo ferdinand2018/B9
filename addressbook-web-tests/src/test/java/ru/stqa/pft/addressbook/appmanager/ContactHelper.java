@@ -18,7 +18,8 @@ public class ContactHelper extends HelperBase{
     }
 
     public void returnToContactPage() {
-        click(By.linkText("home page"));
+        //click(By.linkText("home page"));
+        click(By.linkText("home"));
     }
 
     public void submitContactCreation() {
@@ -91,7 +92,7 @@ public class ContactHelper extends HelperBase{
 
     public void modify(ContactData contact) {
         //selectContactById(contact.getId());
-        initContactModification(contact.getId());
+        initContactModification(1);
         fillContactForm(contact, false);
         submitContactModification();
         returnToContactPage();
