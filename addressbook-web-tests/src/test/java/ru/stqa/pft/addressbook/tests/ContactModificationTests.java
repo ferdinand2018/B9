@@ -21,7 +21,7 @@ public class ContactModificationTests extends TestBase{
             app.contact().create(new ContactData()
                     .withFirstname("Иван").withLastname("Иванов")
                     .withMiddlename("Иванович").withMobile("+79772222333")
-                    .withWork("+79772222333").withGroup(null), true);
+                    .withWork("+79772222333").withGroup("test1"), true);
         }
     }
 
@@ -30,8 +30,7 @@ public class ContactModificationTests extends TestBase{
         Contacts before = app.contact().all();
         ContactData modifiedContact = before.iterator().next();
         ContactData contact = new ContactData().withId(modifiedContact.getId())
-                .withFirstname("Иван").withLastname("Иванов").withMiddlename("Иванович")
-                .withMobile("+79772222333").withWork("+79772222333").withGroup(null);
+                .withFirstname("Сергей").withLastname("Сергеев").withGroup(null);
         app.contact().modify(contact);
         Contacts after = app.contact().all();
         Assert.assertEquals(after.size(), before.size());

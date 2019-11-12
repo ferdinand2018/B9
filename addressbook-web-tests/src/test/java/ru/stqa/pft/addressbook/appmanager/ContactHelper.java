@@ -59,7 +59,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public int initContactModification(int i) {
-        click(By.xpath("(//img[@alt='Edit'])[" + i + "]"));
+        click(By.xpath("//a[@href='edit.php?id=" + i + "']"));
         return i;
     }
 
@@ -94,7 +94,7 @@ public class ContactHelper extends HelperBase{
 
     public void modify(ContactData contact) {
         //selectContactById(contact.getId());
-        initContactModification(1);
+        initContactModification(contact.getId());
         fillContactForm(contact, false);
         submitContactModification();
         returnToContactPage();
@@ -129,9 +129,9 @@ public class ContactHelper extends HelperBase{
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for(WebElement element : elements){
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            String firstname = element.findElement(By.xpath("//td[3]")).getText();
-            String lastname = element.findElement(By.xpath("//td[2]")).getText();
-            contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
+            String firstname = element.findElement(By.xpath(".//td[3]")).getText();
+            String lastname = element.findElement(By.xpath(".//td[2]")).getText();
+            contacts.add(new ContactData().withId(id).withLastname(lastname).withFirstname(firstname));
         }
         return contacts;
     }
