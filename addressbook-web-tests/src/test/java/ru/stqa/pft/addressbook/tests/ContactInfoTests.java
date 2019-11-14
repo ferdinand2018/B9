@@ -25,7 +25,7 @@ public class ContactInfoTests extends TestBase{
         return Arrays.asList(contact.getHome(), contact.getMobile(), contact.getWork())
                 .stream()
                 .filter((s) -> ! s.equals(""))
-                .map(ContactPhoneTests::cleaned)
+                .map(ContactInfoTests::cleaned)
                 .collect(Collectors.joining("\n"));
     }
 
@@ -33,7 +33,7 @@ public class ContactInfoTests extends TestBase{
         return Arrays.asList(contact.getAddress())
                 .stream()
                 .filter((s) -> ! s.equals(""))
-                .map(AddressTests::cleaned)
+                .map(ContactInfoTests::cleaned)
                 .collect(Collectors.joining("\n"));
     }
 
@@ -41,7 +41,11 @@ public class ContactInfoTests extends TestBase{
         return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
                 .stream()
                 .filter((s) -> ! s.equals(""))
-                .map(EmailTests::cleaned)
+                .map(ContactInfoTests::cleaned)
                 .collect(Collectors.joining("\n"));
+    }
+
+    public static String cleaned(String contact){
+        return contact.replaceAll("\\s","").replaceAll("[-()]]","");
     }
 }
