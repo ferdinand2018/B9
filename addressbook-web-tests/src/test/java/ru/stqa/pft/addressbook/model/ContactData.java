@@ -3,7 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-    private int id; /*= Integer.MAX_VALUE;*/
+    private int id = Integer.MAX_VALUE;
     private String firstname;
     private String lastname;
     private String middlename;
@@ -98,15 +98,7 @@ public class ContactData {
         return id == that.id &&
                 Objects.equals(firstname, that.firstname) &&
                 Objects.equals(lastname, that.lastname) &&
-                Objects.equals(middlename, that.middlename) &&
-                Objects.equals(group, that.group) &&
-                Objects.equals(mobile, that.mobile) &&
-                Objects.equals(home, that.home) &&
-                Objects.equals(work, that.work) &&
-                Objects.equals(email, that.email) &&
-                Objects.equals(email2, that.email2) &&
-                Objects.equals(email3, that.email3) &&
-                Objects.equals(address, that.address);
+                Objects.equals(group, that.group);
     }
 
     @Override
