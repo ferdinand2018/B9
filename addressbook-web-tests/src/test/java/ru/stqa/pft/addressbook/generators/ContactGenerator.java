@@ -57,9 +57,12 @@ public class ContactGenerator {
     private void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
         Writer writer = new FileWriter(file);
         for(ContactData contact : contacts){
-            writer.write(String.format("%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(),
+            writer.write(String.format("%s;%s;%s;%s;%s;%s\n", contact.getFirstname(),
+                    contact.getMiddlename(),
+                    contact.getLastname(),
                     contact.getMobile() ,
-                    contact.getHome(), contact.getWork()));
+                    contact.getWork(),
+                    contact.getGroup()));
         }
         writer.close();
     }
@@ -68,8 +71,11 @@ public class ContactGenerator {
         Writer writer = new FileWriter(file);
         for(ContactData contact : contacts){
             writer.write(String.format("%s;%s;%s;%s;%s;%s\n", contact.getFirstname(),
-                    contact.getLastname(), contact.getMobile() ,
-                    contact.getHome(), contact.getWork()));
+                    contact.getMiddlename(),
+                    contact.getLastname(),
+                    contact.getMobile() ,
+                    contact.getWork(),
+                    contact.getGroup()));
         }
         writer.close();
     }
@@ -79,10 +85,11 @@ public class ContactGenerator {
         for(int i=0; i<count; i++){
             contacts.add(new ContactData()
                     .withFirstname(String.format("firstname%s", i))
+                    .withMiddlename(String.format("middlename%s", i))
                     .withLastname(String.format("lastname%s", i))
                     .withMobile(String.format("111%s", i))
-                    .withHome(String.format("222%s", i))
-                    .withWork(String.format("333%s", i)));
+                    .withWork(String.format("222%s", i))
+                    .withGroup(String.format("test1")));
         }
         return contacts;
     }
