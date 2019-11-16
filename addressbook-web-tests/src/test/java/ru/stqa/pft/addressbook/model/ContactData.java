@@ -97,8 +97,7 @@ public class ContactData {
         ContactData that = (ContactData) o;
         return id == that.id &&
                 Objects.equals(firstname, that.firstname) &&
-                Objects.equals(lastname, that.lastname) &&
-                Objects.equals(group, that.group);
+                Objects.equals(lastname, that.lastname);
     }
 
     @Override
