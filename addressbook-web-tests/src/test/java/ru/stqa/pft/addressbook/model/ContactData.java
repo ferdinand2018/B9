@@ -153,7 +153,7 @@ public class ContactData {
         ContactData that = (ContactData) o;
         return id == that.id &&
                 Objects.equals(firstname, that.firstname) &&
-                Objects.equals(lastname, that.lastname) &&
+                Objects.equals(lastname, that.lastname) /*&&
                 Objects.equals(middlename, that.middlename) &&
                 Objects.equals(group, that.group) &&
                 Objects.equals(mobile, that.mobile) &&
@@ -162,7 +162,7 @@ public class ContactData {
                 Objects.equals(email, that.email) &&
                 Objects.equals(email2, that.email2) &&
                 Objects.equals(email3, that.email3) &&
-                Objects.equals(address, that.address);
+                Objects.equals(address, that.address)*/;
         /*Objects.equals(photo, that.photo);*/
     }
 

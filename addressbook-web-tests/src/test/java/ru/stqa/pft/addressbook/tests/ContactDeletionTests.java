@@ -7,27 +7,24 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import java.util.Comparator;
-import java.util.List;
 
 public class ContactDeletionTests extends TestBase{
     @BeforeMethod
     public void ensurePreconditions(){
-        app.goTo().homePage();
-        if(app.contact().list().size() == 0){
-            app.contact().create(new ContactData()
-                    .withFirstname("Иван").withLastname("Иванов")
-                    .withMiddlename("Иванович").withMobile("+79772222333")
-                    .withWork("ivanov@mail.com").withGroup(null), true);
+        if(app.db().contacts().size() == 0) {
+            app.goTo().homePage();
+            app.contact().create(new ContactData().withFirstname("Иван").withLastname("Иванов")
+                    .withAddress("abc").withMobile("1").withWorkPhone("2")
+                    .withEmail("abc").withGroup(null), false);
         }
     }
 
     @Test
     public void testContactDelition(){
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData deleteContact = before.iterator().next();
         app.contact().delete(deleteContact);
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         Assert.assertEquals(after.size(), before.size() - 1);
         assertThat(after, equalTo(before.withOut(deleteContact)));
     }

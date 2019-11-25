@@ -28,7 +28,7 @@ public class DbHelper {
         List<GroupData> result = session.createQuery( "from GroupData" ).list();
         session.getTransaction().commit();
         session.close();
-        return new Groups();
+        return new Groups(result);
     }
 
     public Contacts contacts(){
@@ -37,6 +37,6 @@ public class DbHelper {
         List<ContactData> result = session.createQuery( "from ContactData" ).list();
         session.getTransaction().commit();
         session.close();
-        return new Contacts();
+        return new Contacts(result);
     }
 }
