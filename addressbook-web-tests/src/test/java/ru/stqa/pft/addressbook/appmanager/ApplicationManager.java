@@ -26,6 +26,7 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
+    private AppRemoveHelper appremoveHelper;
     private String broweser;
     private DbHelper dbHelper;
 
@@ -53,6 +54,7 @@ public class ApplicationManager {
         wd.get(properties.getProperty("web.baseUrl"));
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
+        appremoveHelper = new AppRemoveHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
         sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
@@ -68,6 +70,10 @@ public class ApplicationManager {
 
     public ContactHelper contact() {
         return contactHelper;
+    }
+
+    public AppRemoveHelper appremove(){
+        return appremoveHelper;
     }
 
     public NavigationHelper goTo() {
