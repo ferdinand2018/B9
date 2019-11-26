@@ -6,7 +6,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -25,9 +27,6 @@ public class ContactData {
 
     @Transient
     private String middlename;
-
-    @Transient
-    private String group;
 
     @Column(name="mobile")
     @Type(type="text")
@@ -52,6 +51,15 @@ public class ContactData {
     private String allEmails;
     @Transient
     private String address;
+
+    public Groups getGroups() {
+        return new Groups(groups);
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
 
     /*@Transient
     @Column(name="photo")
@@ -134,7 +142,7 @@ public class ContactData {
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", middlename='" + middlename + '\'' +
-                ", group='" + group + '\'' +
+                /*", group='" + group + '\'' +*/
                 ", mobilePhone='" + mobile + '\'' +
                 ", homePhone='" + home + '\'' +
                 ", workPhone='" + work + '\'' +
@@ -168,7 +176,7 @@ public class ContactData {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstname, lastname, middlename, group, mobile, home, work, email, email2, email3, address);
+        return Objects.hash(id, firstname, lastname, middlename, mobile, home, work, email, email2, email3, address);
     }
 
     public ContactData withId(int id) {
@@ -199,10 +207,10 @@ public class ContactData {
         this.work = work;
         return this;
     }
-    public ru.stqa.pft.addressbook.model.ContactData withGroup(String group) {
+    /*public ru.stqa.pft.addressbook.model.ContactData withGroup(String group) {
         this.group = group;
         return this;
-    }
+    }*/
 
     public int getId() {
         return id;
@@ -219,9 +227,9 @@ public class ContactData {
     public String getMobile() {
         return mobile;
     }
-    public String getGroup() {
+    /*public String getGroup() {
         return group;
-    }
+    }*/
     public String getHome() {
         return home;
     }

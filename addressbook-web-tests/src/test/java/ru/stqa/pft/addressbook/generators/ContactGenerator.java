@@ -61,8 +61,8 @@ public class ContactGenerator {
                     contact.getMiddlename(),
                     contact.getLastname(),
                     contact.getMobile() ,
-                    contact.getWork(),
-                    contact.getGroup()));
+                    contact.getWork()/*,
+                    contact.getGroup()*/));
         }
         writer.close();
     }
@@ -74,8 +74,8 @@ public class ContactGenerator {
                     contact.getMiddlename(),
                     contact.getLastname(),
                     contact.getMobile() ,
-                    contact.getWork(),
-                    contact.getGroup()));
+                    contact.getWork()/*,
+                    contact.getGroup()*/));
         }
         writer.close();
     }
@@ -89,7 +89,7 @@ public class ContactGenerator {
                     .withLastname(String.format("lastname%s", i))
                     .withMobile(String.format("111%s", i))
                     .withWork(String.format("222%s", i))
-                    .withGroup(String.format("test1")));
+                    /*.withGroup(String.format("test1"))*/);
         }
         return contacts;
     }
