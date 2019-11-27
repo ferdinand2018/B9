@@ -16,6 +16,8 @@ import java.util.Set;
 
 
 public class AppRemoveHelper extends HelperBase{
+    private boolean acceptNextAlert = true;
+
     public AppRemoveHelper(WebDriver wd) {
         super(wd);
     }
@@ -41,6 +43,20 @@ public class AppRemoveHelper extends HelperBase{
     }
 
     public void selectChangeGroupFilter(){
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText("test1");
+    }
 
+    public void changeGroup(){
+        click(By.name("group"));
+    }
+
+    public void deleteContact(){
+        acceptNextAlert = true;
+        click(By.xpath("//input[@value='Delete']"));
+        //assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
+    }
+
+    public void gotoHome(){
+        click(By.linkText("home"));
     }
 }
