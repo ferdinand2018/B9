@@ -51,3 +51,5 @@ sandbox/build/libs/sandbox.jar
 .idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_8_15.xml
 .idea/libraries/Gradle__org_apache_extras_beanshell_bsh_2_0b6.xml
 .idea/libraries/Gradle__org_testng_testng_6_14_3.xml
+addressbook-web-tests/test-20191127T200454.log
+*.log
