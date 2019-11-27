@@ -12,3 +12,42 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+*.class
+.idea/.name
+.idea/codeStyles/Project.xml
+.idea/compiler.xml
+.idea/dbnavigator.xml
+.idea/encodings.xml
+.idea/gradle.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/modules/sandbox.iml
+.idea/modules/sandbox.main.iml
+.idea/modules/sandbox.test.iml
+.idea/uiDesigner.xml
+.idea/vcs.xml
+.idea/workspace.xml
+sandbox/build/libs/sandbox.jar
+.idea/libraries/Gradle__org_checkerframework_checker_compat_qual_2_0_0.xml
+.idea/libraries/Gradle__org_apache_commons_commons_exec_1_3.xml
+.idea/libraries/Gradle__org_codehaus_mojo_animal_sniffer_annotations_1_14.xml
+.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_api_3_141_59.xml
+.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_edge_driver_3_141_59.xml
+.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_chrome_driver_3_141_59.xml
+.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_firefox_driver_3_141_59.xml
+.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_ie_driver_3_141_59.xml
+.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_java_3_141_59.xml
+.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_opera_driver_3_141_59.xml
+.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_remote_driver_3_141_59.xml
+.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_safari_driver_3_141_59.xml
+.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_support_3_141_59.xml
+.idea/libraries/Gradle__com_beust_jcommander_1_72.xml
+.idea/libraries/Gradle__com_google_code_findbugs_jsr305_1_3_9.xml
+.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_1_3.xml
+.idea/libraries/Gradle__com_google_guava_guava_25_0_jre.xml
+.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_1.xml
+.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_11_0.xml
+.idea/libraries/Gradle__com_squareup_okio_okio_1_14_0.xml
+.idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_8_15.xml
+.idea/libraries/Gradle__org_apache_extras_beanshell_bsh_2_0b6.xml
+.idea/libraries/Gradle__org_testng_testng_6_14_3.xml

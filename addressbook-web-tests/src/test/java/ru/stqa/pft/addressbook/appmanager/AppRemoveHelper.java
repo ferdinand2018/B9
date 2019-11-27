@@ -35,4 +35,12 @@ public class AppRemoveHelper extends HelperBase{
     public void returnToContactPage(){
         click(By.linkText("group page \"test1\""));
     }
+
+    public void changeGroupFilter(){
+        click(By.name("group"));
+    }
+
+    public void selectChangeGroupFilter(){
+
+    }
 }
