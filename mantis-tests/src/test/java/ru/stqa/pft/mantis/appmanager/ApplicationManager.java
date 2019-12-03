@@ -15,33 +15,55 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
     private final Properties properties;
-    WebDriver wd;
+    private WebDriver wd;
 
     private String broweser;
+    private RegistrationHelper registrationHelper;
 
     public ApplicationManager(String broweser) {
         this.broweser = broweser;
         properties = new Properties();
-
     }
 
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
-        if(broweser.equals(BrowserType.FIREFOX)){
-            //wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-            wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C:/Program Files (x86)/Mozilla Firefox ESR/firefox.exe"));
-        } else if(broweser.equals(BrowserType.CHROME)){
-            wd = new ChromeDriver();
-        } else if(broweser.equals(BrowserType.IE)){
-            wd = new InternetExplorerDriver();
-        }
-        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        wd.get(properties.getProperty("web.baseUrl"));
     }
 
     public void stop() {
-        wd.quit();
+        if(wd != null){
+            wd.quit();
+        }
+    }
+
+    public HttpSession newSession(){
+        return new HttpSession(this);
+    }
+
+    public String getProperty(String key){
+        return properties.getProperty(key);
+    }
+
+    public RegistrationHelper registration() {
+        if(registrationHelper == null){
+            registrationHelper = new RegistrationHelper(this);
+        }
+        return registrationHelper;
+    }
+
+    public WebDriver getDriver() {
+        if(wd == null){
+            if(broweser.equals(BrowserType.FIREFOX)){
+                //wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
+                wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C:/Program Files (x86)/Mozilla Firefox ESR/firefox.exe"));
+            } else if(broweser.equals(BrowserType.CHROME)){
+                wd = new ChromeDriver();
+            } else if(broweser.equals(BrowserType.IE)){
+                wd = new InternetExplorerDriver();
+            }
+            wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+            wd.get(properties.getProperty("web.baseUrl"));
+        }
+        return wd;
     }
 }
