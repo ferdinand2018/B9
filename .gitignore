@@ -53,3 +53,5 @@ sandbox/build/libs/sandbox.jar
 .idea/libraries/Gradle__org_testng_testng_6_14_3.xml
 addressbook-web-tests/test-20191127T200454.log
 *.log
+*.xml
+*.iml
