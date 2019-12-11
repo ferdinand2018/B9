@@ -21,6 +21,7 @@ public class ApplicationManager {
     private String broweser;
     private RegistrationHelper registrationHelper;
     private MailHelper mailHelper;
+    private JamesHelper jamesHelper;
 
     public ApplicationManager(String broweser) {
         this.broweser = broweser;
@@ -81,5 +82,12 @@ public class ApplicationManager {
             mailHelper = new MailHelper(this);
         }
         return mailHelper;
+    }
+
+    public JamesHelper james(){
+        if(jamesHelper == null){
+            jamesHelper = new JamesHelper(this);
+        }
+        return jamesHelper;
     }
 }
