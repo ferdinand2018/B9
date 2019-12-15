@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -22,16 +23,23 @@ public class AppRemoveHelper extends HelperBase{
         super(wd);
     }
 
-    public void selectContactById(){
-        click(By.id("122"));
+    public void selectContactById(int id){
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
     public void selectGroup(){
         click(By.name("to_group"));
     }
 
-    public void addToGroup(){
-        click(By.name("add"));
+    public void addToGroup(ContactData contact){
+        selectContactById(contact.getId());
+        addSelectedContactToGroup(contact);
+    }
+
+    private void addSelectedContactToGroup(ContactData contact) {
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
+        click(By.xpath("//input[@value='Add to']"));
+        wd.findElement(By.cssSelector("div.msgbox"));
     }
 
     public void returnToContactPage(){
@@ -50,13 +58,23 @@ public class AppRemoveHelper extends HelperBase{
         click(By.name("group"));
     }
 
-    public void deleteContact(){
-        acceptNextAlert = true;
-        click(By.xpath("//input[@value='Delete']"));
-        //assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
+    public void deleteContact(ContactData contact, GroupData group){
+        new Select(wd.findElement(By.name("group"))).selectByIndex(group.getId());
+        selectContactById(contact.getId());
+        deleteSelectedContactFromGroup(contact, group);
+    }
+
+    private void deleteSelectedContactFromGroup(ContactData contact, GroupData group) {
+        click(By.xpath("//input[@name='remove']"));
+        wd.findElement(By.cssSelector("div.msgbox"));
     }
 
     public void gotoHome(){
         click(By.linkText("home"));
+    }
+    public void deleteFromGroup(ContactData contact, GroupData group) {
+        new Select(wd.findElement(By.name("group"))).selectByIndex(group.getId());
+        selectContactById(contact.getId());
+        deleteSelectedContactFromGroup(contact, group);
     }
 }
