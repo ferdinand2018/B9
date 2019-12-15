@@ -22,6 +22,9 @@ public class ApplicationManager {
     private RegistrationHelper registrationHelper;
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
+    private ChangePassHelper changePassHelper;
+    private DbHelper dbHelper;
+    private SoapHelper soapHelper;
 
     public ApplicationManager(String broweser) {
         this.broweser = broweser;
@@ -52,6 +55,13 @@ public class ApplicationManager {
             registrationHelper = new RegistrationHelper(this);
         }
         return registrationHelper;
+    }
+
+    public ChangePassHelper changePass(){
+        if(changePassHelper == null){
+            changePassHelper = new ChangePassHelper(this);
+        }
+        return changePassHelper;
     }
 
     public FtpHelper ftp(){
@@ -89,5 +99,16 @@ public class ApplicationManager {
             jamesHelper = new JamesHelper(this);
         }
         return jamesHelper;
+    }
+
+    public DbHelper db(){
+        return dbHelper;
+    }
+
+    public SoapHelper soap(){
+        if (soapHelper == null){
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
     }
 }
