@@ -31,15 +31,16 @@ public class AppRemoveHelper extends HelperBase{
         click(By.name("to_group"));
     }
 
-    public void addToGroup(ContactData contact){
+    public void addToGroup(ContactData contact, GroupData groupAdd){
         selectContactById(contact.getId());
-        addSelectedContactToGroup(contact);
+        addSelectedContactToGroup(contact, groupAdd);
     }
 
-    private void addSelectedContactToGroup(ContactData contact) {
+    private void addSelectedContactToGroup(ContactData contact, GroupData group) {
         new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
         click(By.xpath("//input[@value='Add to']"));
         wd.findElement(By.cssSelector("div.msgbox"));
+        System.out.println("Added user " + contact.getId() + " to a group " + group.getId() + " " + group.getName());
     }
 
     public void returnToContactPage(){
@@ -73,7 +74,7 @@ public class AppRemoveHelper extends HelperBase{
         click(By.linkText("home"));
     }
     public void deleteFromGroup(ContactData contact, GroupData group) {
-        new Select(wd.findElement(By.name("group"))).selectByIndex(group.getId());
+        new Select(wd.findElement(By.name("group"))).selectByValue(group.getName());
         selectContactById(contact.getId());
         deleteSelectedContactFromGroup(contact, group);
     }
