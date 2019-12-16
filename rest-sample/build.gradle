@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'rest-sample'
+version 'unspecified'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.testng:testng:6.14.3'
+    compile 'org.apache.httpcomponents:httpclient:4.5.10'
+    compile("org.apache.httpcomponents:fluent-hc:4.5.10")
+    compile("com.jayway.restassured:rest-assured:2.9.0")
+    compile("com.google.code.gson:gson:2.8.6")
+}
+
+test{
+    useTestNG()
+}
