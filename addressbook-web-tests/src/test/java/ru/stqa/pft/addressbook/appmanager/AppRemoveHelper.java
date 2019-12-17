@@ -37,9 +37,9 @@ public class AppRemoveHelper extends HelperBase{
     }
 
     private void addSelectedContactToGroup(ContactData contact, GroupData group) {
-        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
+        String valueGroup = String.valueOf(group.getId());
+        new Select(wd.findElement(By.name("to_group"))).selectByValue(valueGroup);
         click(By.xpath("//input[@value='Add to']"));
-        wd.findElement(By.cssSelector("div.msgbox"));
         System.out.println("Added user " + contact.getId() + " to a group " + group.getId() + " " + group.getName());
     }
 
@@ -74,7 +74,7 @@ public class AppRemoveHelper extends HelperBase{
         click(By.linkText("home"));
     }
     public void deleteFromGroup(ContactData contact, GroupData group) {
-        new Select(wd.findElement(By.name("group"))).selectByValue(group.getName());
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
         selectContactById(contact.getId());
         deleteSelectedContactFromGroup(contact, group);
     }
