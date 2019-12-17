@@ -30,11 +30,9 @@ public class TestBase {
     boolean isIssueNotFixed(int issueId) throws IOException, ServiceException, javax.xml.rpc.ServiceException {
         Issue testIssue = app.soap().getIssue(issueId);
         ObjectRef issuestatus = testIssue.getStatus();
-        int statusid = issuestatus.getId().intValue();
-        System.out.println(issuestatus);
-        if (statusid != 80) {
+        if(issuestatus != null){
             return true;
-        } else {
+        }else {
             return false;
         }
     }
