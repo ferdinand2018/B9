@@ -39,8 +39,8 @@ public class TestBase {
 
     boolean isIssueOpen(int issueId) throws IOException, ServiceException, javax.xml.rpc.ServiceException {
         Issue testIssue = app.soap().getIssue(issueId);
-        ObjectRef issuestatus = testIssue.getStatus();
-        if (issuestatus == null) {
+        ObjectRef issueStatus = testIssue.getStatus().getName().equals("resolved");
+        if (issueStatus == null) {
             return true;
         } else {
             return false;
